@@ -20,9 +20,7 @@ module.exports = {
         message.shivaValidated = true;
         message.securityToken = COMMAND_SECURITY_TOKEN;
 
-        setTimeout(() => {
-            message.delete().catch(() => {});
-        }, 4000);
+        
         
         const ConditionChecker = require('../../utils/checks');
         const checker = new ConditionChecker(client);
@@ -73,4 +71,5 @@ module.exports = {
         }
     }
 };
+
 
