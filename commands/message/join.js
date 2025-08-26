@@ -37,19 +37,19 @@ module.exports = {
             if (!conditions.userInVoice) {
                 const embed = new EmbedBuilder().setDescription('❌ You need to be in a voice channel!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             if (!conditions.canJoinVoice) {
                 const embed = new EmbedBuilder().setDescription('❌ I don\'t have permission to join your voice channel!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             if (conditions.hasActivePlayer && conditions.sameVoiceChannel) {
                 const embed = new EmbedBuilder().setDescription('✅ I\'m already in your voice channel!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             const PlayerHandler = require('../../utils/player');
@@ -63,13 +63,14 @@ module.exports = {
 
             const embed = new EmbedBuilder().setDescription(`✅ Joined **${message.member.voice.channel.name}**!`);
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
 
         } catch (error) {
             console.error('Join command error:', error);
             const embed = new EmbedBuilder().setDescription('❌ An error occurred while joining voice channel!');
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
     }
 };
+
