@@ -57,7 +57,7 @@ module.exports = {
             }
 
             const embed = new EmbedBuilder()
-                .setTitle('📖 Ultimate Music Bot - Command List')
+                .setTitle('📖 Jamie Sucks your dick Bot - Command List')
                 .setColor(0x1DB954)
                 .setDescription(description)
                 .setFooter({ text: 'Developed by GlaceYT | https://glaceyt.com' })
@@ -71,3 +71,4 @@ module.exports = {
         }
     }
 };
+
