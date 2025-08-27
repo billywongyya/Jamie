@@ -20,9 +20,7 @@ module.exports = {
         message.shivaValidated = true;
         message.securityToken = COMMAND_SECURITY_TOKEN;
 
-        setTimeout(() => {
-            message.delete().catch(() => {});
-        }, 4000);
+        
         
         const from = parseInt(args[0]);
         const to = parseInt(args[1]);
@@ -30,7 +28,7 @@ module.exports = {
         if (!from || !to || from < 1 || to < 1) {
             const embed = new EmbedBuilder().setDescription('❌ Please provide valid positions! Example: `!move 3 1` (move song 3 to position 1)');
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
 
         const ConditionChecker = require('../../utils/checks');
@@ -46,13 +44,13 @@ module.exports = {
             if (!conditions.hasActivePlayer || conditions.queueLength === 0) {
                 const embed = new EmbedBuilder().setDescription('❌ Queue is empty!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             if (from > conditions.queueLength || to > conditions.queueLength) {
                 const embed = new EmbedBuilder().setDescription(`❌ Invalid positions! Queue has only ${conditions.queueLength} songs.`);
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             const player = conditions.player;
@@ -66,13 +64,14 @@ module.exports = {
 
             const embed = new EmbedBuilder().setDescription(`🔄 Moved **${track.info.title}** from position ${from} to ${to}!`);
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
 
         } catch (error) {
             console.error('Move command error:', error);
             const embed = new EmbedBuilder().setDescription('❌ An error occurred while moving the song!');
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
     }
 };
+
