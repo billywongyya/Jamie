@@ -20,9 +20,7 @@ module.exports = {
         message.shivaValidated = true;
         message.securityToken = COMMAND_SECURITY_TOKEN;
 
-        setTimeout(() => {
-            message.delete().catch(() => {});
-        }, 4000);
+        
         
         const mode = args?.toString().toLowerCase();
         const validModes = ['off', 'none', 'track', 'song', 'queue', 'all'];
@@ -30,7 +28,7 @@ module.exports = {
         if (!mode || !validModes.includes(mode)) {
             const embed = new EmbedBuilder().setDescription('❌ Please specify a valid loop mode!\n**Options:** `off`, `track`, `queue`\nExample: `!loop track`');
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
 
         const ConditionChecker = require('../../utils/checks');
@@ -46,13 +44,13 @@ module.exports = {
             if (!conditions.hasActivePlayer) {
                 const embed = new EmbedBuilder().setDescription('❌ No music is currently playing!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             if (!conditions.sameVoiceChannel) {
                 const embed = new EmbedBuilder().setDescription('❌ You need to be in the same voice channel as the bot!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             let loopMode;
@@ -68,13 +66,14 @@ module.exports = {
 
             const embed = new EmbedBuilder().setDescription(`${modeEmojis[loopMode]} Loop mode set to: **${modeNames[loopMode]}**`);
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
 
         } catch (error) {
             console.error('Loop command error:', error);
             const embed = new EmbedBuilder().setDescription('❌ An error occurred while setting loop mode!');
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
     }
 };
+
