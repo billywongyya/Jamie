@@ -20,9 +20,7 @@ module.exports = {
         message.shivaValidated = true;
         message.securityToken = COMMAND_SECURITY_TOKEN;
 
-        setTimeout(() => {
-            message.delete().catch(() => {});
-        }, 4000);
+        
         
         const ConditionChecker = require('../../utils/checks');
         const checker = new ConditionChecker(client);
@@ -38,7 +36,7 @@ module.exports = {
             if (errorMsg) {
                 const embed = new EmbedBuilder().setDescription(errorMsg);
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             const player = conditions.player;
@@ -48,13 +46,14 @@ module.exports = {
 
             const embed = new EmbedBuilder().setDescription(`⏭️ Skipped: **${currentTrack}**`);
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
 
         } catch (error) {
             console.error('Skip command error:', error);
             const embed = new EmbedBuilder().setDescription('❌ An error occurred while skipping the song!');
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
     }
 };
+
