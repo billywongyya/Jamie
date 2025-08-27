@@ -60,7 +60,7 @@ module.exports = {
                 .setTitle('📖 Jamie Sucks Your Dick Bot - Command List')
                 .setColor(0x1DB954)
                 .setDescription(description)
-                .setFooter({ text: 'Developed by GlaceYT | https://glaceyt.com' })
+                .setFooter({ text: 'Developed by Billy' })
                 .setTimestamp();
 
             await message.reply({ embeds: [embed] });
@@ -71,5 +71,6 @@ module.exports = {
         }
     }
 };
+
 
 
