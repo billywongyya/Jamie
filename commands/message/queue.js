@@ -20,9 +20,7 @@ module.exports = {
         message.shivaValidated = true;
         message.securityToken = COMMAND_SECURITY_TOKEN;
 
-        setTimeout(() => {
-            message.delete().catch(() => {});
-        }, 4000);
+        
         
         const ConditionChecker = require('../../utils/checks');
         const checker = new ConditionChecker(client);
@@ -37,7 +35,7 @@ module.exports = {
             if (!conditions.hasActivePlayer) {
                 const embed = new EmbedBuilder().setDescription('❌ No music is currently playing!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             const player = conditions.player;
@@ -47,7 +45,7 @@ module.exports = {
             if (!currentTrack && queue.size === 0) {
                 const embed = new EmbedBuilder().setDescription('📜 Queue is empty!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             const page = parseInt(args[0]) || 1;
@@ -89,7 +87,7 @@ module.exports = {
             console.error('Queue command error:', error);
             const embed = new EmbedBuilder().setDescription('❌ An error occurred while fetching the queue!');
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
     }
 };
@@ -100,3 +98,4 @@ function formatDuration(duration) {
     const seconds = Math.floor((duration % 60000) / 1000);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
+
