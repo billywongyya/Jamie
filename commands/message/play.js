@@ -20,9 +20,7 @@ module.exports = {
         message.shivaValidated = true;
         message.securityToken = COMMAND_SECURITY_TOKEN;
 
-        setTimeout(() => {
-            message.delete().catch(() => {});
-        }, 4000);
+        
         
         const ConditionChecker = require('../../utils/checks');
         const PlayerHandler = require('../../utils/player');
@@ -32,7 +30,7 @@ module.exports = {
         if (!query) {
             const embed = new EmbedBuilder().setDescription('❌ Please provide a song to play!');
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
 
         try {
@@ -48,7 +46,7 @@ module.exports = {
             if (errorMsg) {
                 const embed = new EmbedBuilder().setDescription(errorMsg);
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             let targetVC = message.member.voice.channelId;
@@ -68,22 +66,23 @@ module.exports = {
             if (result.type === 'track') {
                 const embed = new EmbedBuilder().setDescription(`✅ Added to queue: **${result.track.info.title}**`);
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             } else if (result.type === 'playlist') {
                 const embed = new EmbedBuilder().setDescription(`✅ Added **${result.tracks}** songs from playlist: **${result.name}**`);
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             } else {
                 const embed = new EmbedBuilder().setDescription('❌ No results found for your query!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
         } catch (error) {
             const embed = new EmbedBuilder().setDescription('❌ An error occurred while trying to play music!');
             console.error('Play command error:', error);
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
     }
 };
+
