@@ -20,9 +20,7 @@ module.exports = {
         message.shivaValidated = true;
         message.securityToken = COMMAND_SECURITY_TOKEN;
 
-        setTimeout(() => {
-            message.delete().catch(() => {});
-        }, 4000);
+        
         
         const ConditionChecker = require('../../utils/checks');
         const checker = new ConditionChecker(client);
@@ -37,7 +35,7 @@ module.exports = {
             if (!conditions.hasActivePlayer || !conditions.currentTrack) {
                 const embed = new EmbedBuilder().setDescription('❌ No music is currently playing!');
                 return message.reply({ embeds: [embed] })
-                    .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                    ;
             }
 
             const track = conditions.currentTrack;
@@ -65,7 +63,7 @@ module.exports = {
             console.error('Now playing command error:', error);
             const embed = new EmbedBuilder().setDescription('❌ An error occurred while fetching current song!');
             return message.reply({ embeds: [embed] })
-                .then(m => setTimeout(() => m.delete().catch(() => {}), 3000));
+                ;
         }
     }
 };
@@ -84,3 +82,4 @@ function getLoopEmoji(loopMode) {
         default: return '➡️';
     }
 }
+
